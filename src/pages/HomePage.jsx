@@ -4,14 +4,22 @@ import '../../startingcode/data/products'
 import { products } from '../../startingcode/data/products';
 
 export function HomePage() {
+
+    fetch('http://localhost:3000/api/products')
+            .then((response) => {
+                return response.json()
+            }).then((data)=>{
+                    console.log(data)
+                });
+
     return (
         <>
             <title>Ecommerce</title>
-
+            
             <Header />
             <div className="home-page">
                 <div className="products-grid">
-                    {products.map((product) => {
+                    { products.map((product) => {
                         return (
                             <>
                                 < div key={ product.id } className="product-container" >
