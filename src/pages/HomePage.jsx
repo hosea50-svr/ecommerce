@@ -1,8 +1,9 @@
 import './HomePage.css';
 import axios from 'axios';
+import { useEffect,useState } from 'react';
 import { Header } from '../components/Header';
 import '../../startingcode/data/products'
-import { products } from '../../startingcode/data/products';
+// import { products } from '../../startingcode/data/products';
 
 export function HomePage() {
 //<div>
@@ -13,10 +14,16 @@ export function HomePage() {
     //                 console.log(data)
     //             });
 // </div>
-    axios('http://localhost:3000/api/products')
+    const [products, setProducts] = useState([]);
+
+    useEffect(()=>{
+        axios('http://localhost:3000/api/products')
             .then((response) => {
-                console.log(response.data)
+                setProducts(response.data);
             })
+        },[]
+    );
+    
     return (
         <>
             <title>Ecommerce</title>
