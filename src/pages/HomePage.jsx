@@ -7,7 +7,7 @@ import '../../startingcode/data/products'
 
 export function HomePage() {
 //<div>
-    // fetch('http://localhost:3000/api/products')
+    // fetch('/api/products')
     //         .then((response) => {
     //             return response.json()
     //         }).then((data)=>{
@@ -15,11 +15,17 @@ export function HomePage() {
     //             });
 // </div>
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
 
     useEffect(()=>{
-        axios('http://localhost:3000/api/products')
+        axios('/api/products')
             .then((response) => {
                 setProducts(response.data);
+            })
+
+        axios('/api/cart-items')
+            .then((response) => {
+                setCart(response.data);
             })
         },[]
     );
@@ -28,7 +34,7 @@ export function HomePage() {
         <>
             <title>Ecommerce</title>
             
-            <Header />
+            <Header cart={cart}/>
             <div className="home-page">
                 <div className="products-grid">
                     { products.map((product) => {
