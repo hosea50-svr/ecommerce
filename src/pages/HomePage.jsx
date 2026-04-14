@@ -5,7 +5,7 @@ import { Header } from '../components/Header';
 import '../../startingcode/data/products'
 // import { products } from '../../startingcode/data/products';
 
-export function HomePage() {
+export function HomePage({cart}) {
 //<div>
     // fetch('/api/products')
     //         .then((response) => {
@@ -15,7 +15,6 @@ export function HomePage() {
     //             });
 // </div>
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
 
     useEffect(()=>{
         axios('/api/products')
@@ -23,10 +22,7 @@ export function HomePage() {
                 setProducts(response.data);
             })
 
-        axios('/api/cart-items')
-            .then((response) => {
-                setCart(response.data);
-            })
+        
         },[]
     );
     
