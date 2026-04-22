@@ -1,5 +1,5 @@
 import axios from 'axios';
-import './App.css'
+// import './App.css'
 import { Routes,Route } from 'react-router';
 import { HomePage } from './pages/HomePage';
 import { CheckoutPage } from './pages/Checkoutpage';
@@ -11,11 +11,11 @@ import { useEffect,useState } from 'react';
 function App() {
   const [cart, setCart] = useState([]);
   useEffect(()=>{
-    axios('/api/cart-items')
+    axios('/api/cart-items?expand=product')
             .then((response) => {
                 setCart(response.data);
             })
-  },[])
+        },[])
 
   return (
       <>
