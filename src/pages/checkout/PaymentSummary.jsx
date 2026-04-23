@@ -1,7 +1,7 @@
 import { formatMoney } from "../../utils/money"
 
 
-export function paymentSummary({paymentSummary}){
+export function PaymentSummary({paymentSummary}){
     return(
         <>
             {paymentSummary && (

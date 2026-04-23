@@ -12,18 +12,28 @@ export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    axios.get('/api/products')
-      .then((response) => {
+useEffect(() => {
+  let isMounted = true;
+
+  const getHomeData = async () => {
+    try {
+      const response = await axios.get('/api/products');
+      if (isMounted) {
         setProducts(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      if (isMounted) setLoading(false);
+    }
+  };
+
+  getHomeData();
+
+  return () => {
+    isMounted = false;
+  };
+}, []);
  
 
   return (

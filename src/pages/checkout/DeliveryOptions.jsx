@@ -5,7 +5,7 @@ export function DeliveryOptions({cartItem,deliveryOptions}) {
   return (
     <div className="delivery-options">
       <div className="delivery-options-title">Choose a delivery option:</div>
-      {deliveryOptions.map((deliveryOption) => {
+      {deliveryOptions?.map((deliveryOption) => {
         let priceString = "FREE Shipping";
         if (deliveryOption.priceCents > 0) {
           priceString = `${formatMoney(deliveryOption.priceCents)} - SHIPPING`;

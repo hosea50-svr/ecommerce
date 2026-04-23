@@ -4,17 +4,19 @@ import { Routes,Route } from 'react-router';
 import { HomePage } from './pages/home/HomePage';
 import { CheckoutPage } from './pages/checkout/Checkoutpage';
 import { OrdersPage } from './pages/orders/OrdersPage';
-import { TrackingPage } from './pages/TrackingPage';
+import { TrackingPage } from './pages/tracking/TrackingPage';
 import { useEffect,useState } from 'react';
 
 
 function App() {
   const [cart, setCart] = useState([]);
+
   useEffect(()=>{
-    axios('/api/cart-items?expand=product')
-            .then((response) => {
-                setCart(response.data);
-            })
+    const fetchAppData = async ()=>{
+      const response = await axios('/api/cart-items?expand=product')
+          setCart(response.data);
+        }
+        fetchAppData();
         },[])
 
   return (
