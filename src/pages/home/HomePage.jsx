@@ -7,7 +7,7 @@ import { ProductGrid } from './ProductsGrid';
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-export function HomePage({ cart }) {
+export function HomePage({ cart, loadCart }) {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -72,7 +72,7 @@ useEffect(() => {
                         </div>
                       ))
       
-        :<ProductGrid products={products}/>
+        :<ProductGrid products={products} loadCart={loadCart} />
         }
       </div>
     </>
