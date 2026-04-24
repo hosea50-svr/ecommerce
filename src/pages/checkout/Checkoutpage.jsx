@@ -28,7 +28,7 @@ export function CheckoutPage({ cart, loadCart } ) {
 
       useEffect(()=>{
         let fetchCheckoutData =async()=>{
-      let response = await axios.get("/api/delivery-options?estimatedDeliveryTime")
+      let response = await axios.get("/api/delivery-options?expand=estimatedDeliveryTime")
         setDeliveryOptions(response.data);
         }
         fetchCheckoutData()
@@ -53,7 +53,7 @@ export function CheckoutPage({ cart, loadCart } ) {
 
         <div className="checkout-grid">
             <OrderSummary cart={cart} deliveryOptions={deliveryOptions} loadCart={loadCart}/>
-            <PaymentSummary paymentSummary={paymentSummary}/>
+            <PaymentSummary paymentSummary={paymentSummary} loadCart={loadCart}/>
           </div>
         </div>
       </>

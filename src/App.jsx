@@ -10,8 +10,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // memoize function so it doesn't recreate on every render
   const loadCart = useCallback(async () => {
     try {
       setLoading(true);
