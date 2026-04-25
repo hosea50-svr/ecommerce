@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { formatMoney } from "../../utils/money";
 import axios from "axios";
@@ -30,7 +31,10 @@ export function Product({product,loadCart}) {
   return (
     <div  className="product-container">
       <div className="product-image-container">
-        <img className="product-image" src={product.image} alt={product.name} />
+        <img className="product-image"
+          data-testid="product-image"
+         src={product.image} 
+         alt={product.name} />
       </div>
 
       <div className="product-name limit-text-to-2-lines">{product.name}</div>
@@ -38,6 +42,7 @@ export function Product({product,loadCart}) {
       <div className="product-rating-container">
         <img
           className="product-rating-stars"
+          data-testid ="product-rating-stars-image"
           src={`images/ratings/rating-${product.rating.stars * 10}.png`}
           alt="rating"
         />
@@ -65,7 +70,7 @@ export function Product({product,loadCart}) {
           <option value="10">10</option>
         </select>
       </div>
-      {notification &&(<p>✔️ Added</p>)}
+      {notification &&(<span>✔️ Added</span>)}
       <div className="product-spacer"></div>
 
       <button
